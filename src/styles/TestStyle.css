@@ -1,0 +1,25 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.NameTestWrap{
+    padding-top: 30px;
+    text-align: center;
+}
+
+.NameTestWrap h2{
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.TestInfoWrap{
+    text-align: center;
+    margin: 30px 100px 0px 100px;
+    font-size: 18px;
+    border: 6px solid #000000;
+}
+
+.TestInfoWrap p{
+    margin: 10px;
+}

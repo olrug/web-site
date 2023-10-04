@@ -1,0 +1,33 @@
+*{
+    padding: 0px; margin: 0px;
+}
+
+.Navb{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 2px;
+    box-sizing: border-box;
+    margin:  auto;
+    text-align: center; 
+    border: 2px solid #000000;
+    background-color: whitesmoke;
+    font-size: 15px;
+}
+
+.Navb ul{
+    list-style: none;
+    display: flex;
+}
+
+.Navb ul li{
+    margin: 20px;
+    text-decoration: none;
+}
+.Navb ul li a{
+    color:rgb(23, 103, 174);
+    text-decoration: none;
+}
+.Navb ul li a:hover{
+    color:brown;
+}

@@ -1,0 +1,31 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.NamePhotoWrap{
+    padding-top: 30px;
+    text-align: center;
+}
+
+.PhotoInfoWrap{
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 30px;
+}
+
+.PhotoInfoWrap img{
+    object-fit: cover;
+    margin: 8px;
+    width: 260px;
+    height: 260px;
+}
+
+.PhotoInfoWrap p{
+    text-align: center;
+}
+
+.lol{
+    display: flex;
+}

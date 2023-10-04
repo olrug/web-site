@@ -1,0 +1,14 @@
+.AboutNameWrap {
+    padding-top: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.AboutInfoTxt {
+    margin: 0px 50px 100px 100px;
+    text-align: justify;
+    font-size: 20px;
+    padding: 50px;
+    border: 6px solid #000000;
+    margin-top: 40px;
+}
