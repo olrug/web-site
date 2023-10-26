@@ -11,7 +11,7 @@ import Test from '../components/Test.vue';
 const routes = [
     {
       path: '/',
-      name: 'home',
+      name: '/home',
       components: {
         default: Home,
         navbar: Navbar,

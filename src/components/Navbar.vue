@@ -1,6 +1,6 @@
 
 <template>
-    <div class="Navb">
+    <div class="Navbar">
         <nav>
             <ul>
                 <li><router-link active-class="active" to="/">Главная страница</router-link></li>
