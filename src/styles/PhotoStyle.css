@@ -9,10 +9,12 @@
 }
 
 .PhotoInfoWrap{
+    justify-content: space-around;
     margin-top: 30px;
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 30px;
+    
 }
 
 .PhotoInfoWrap img{
@@ -28,4 +30,5 @@
 
 .lol{
     display: flex;
+    justify-content: space-around;
 }

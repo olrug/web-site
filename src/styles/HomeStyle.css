@@ -17,7 +17,8 @@
 
 .HomeInfoWrap{
     display:flex;
-    padding: 20px 0px 0px 300px;
+    justify-content: center;
+    
 }
 
 .pic{
