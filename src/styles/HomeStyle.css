@@ -3,8 +3,9 @@
 }
 
 .HomeNameWrap{
-    padding-top: 30px;
-    padding-left: 790px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .HomeNameWrap h1{

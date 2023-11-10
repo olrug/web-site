@@ -107,9 +107,4 @@
     </div>
 </template>
 
-<script>
-    import '../styles/TestStyle.css'
-    export default {
-        name: "TestComponent"
-    }
-</script>
+<script src="../js/test.js"></script>

@@ -38,5 +38,8 @@
 
 .send_button{
     margin-right: 100px;
-    
+}
+
+.error {
+    border: 1px solid red;
 }

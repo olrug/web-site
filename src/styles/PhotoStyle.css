@@ -32,3 +32,14 @@
     display: flex;
     justify-content: space-around;
 }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .row > div {
+    flex-basis: 20%;
+    margin: 5px;
+    box-sizing: border-box;
+  }

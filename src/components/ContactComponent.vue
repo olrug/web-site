@@ -4,10 +4,14 @@
             <h1>Контакт</h1>
         </div>
         <div class="ContactInfoWrap">
-            <form action="mailto:artvik48@gmail.com" method="POST">
+            <form id="contactForm" action="mailto:artvik48@gmail.com" method="POST">
                 <p>
                     Фамилия Имя Отчество<br>
-                    <input class="txt" type="text" size="20" placeholder="Введите ФИО">
+                    <input id="fullNameInput" class="txt" type="text" size="20" placeholder="Введите ФИО">
+                </p>
+                <p>
+                    Номер телефона<br>
+                    <input id="phoneInput" class="txt" type="text" size="20" placeholder="Введите номер телефона">
                 </p>
                 <p>
                     Ваш пол.<br>
@@ -32,7 +36,7 @@
                 <p>Комментарий<br>
                     <textarea class="coment" name="message" cols="40" rows="3"></textarea></p>
                 <p>
-                    <input class="send_button" type="submit" value="Отправить">
+                    <input id="submitButton" class="send_button" type="submit" value="Отправить">
                     <input class="clear_button" type="reset" value="Очистить">
                 </p>
             </form>
@@ -40,9 +44,4 @@
     </div>
 </template>
 
-<script>
-    import '../styles/ContactStyle.css'
-    export default {
-        name: "ContactComponent"
-    }
-</script>
+<script src="../js/contact.js"></script>
