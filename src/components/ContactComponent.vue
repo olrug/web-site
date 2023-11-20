@@ -14,6 +14,30 @@
                     <input id="phoneInput" class="txt" type="text" size="20" placeholder="Введите номер телефона">
                 </p>
                 <p>
+                    Дата рождения<br></p>
+                    <div id="calendarContainer">
+                        <div class="controls">
+                          <select id="yearSelect"></select>
+                          <select id="monthSelect">
+                            <option value="0">Январь</option>
+                            <option value="1">Февраль</option>
+                            <option value="2">Март</option>
+                            <option value="3">Апрель</option>
+                            <option value="4">Май</option>
+                            <option value="5">Июнь</option>
+                            <option value="6">Июль</option>
+                            <option value="7">Август</option>
+                            <option value="8">Сентябрь</option>
+                            <option value="9">Октябрь</option>
+                            <option value="10">Ноябрь</option>
+                            <option value="11">Декабрь</option>
+                          </select>
+                        </div>
+                        <div id="calendar" style="display: none;"></div>
+                        <input type="text" placeholder="Выберите дату" id="selectedDateInput" readonly>
+                      </div>
+                
+                <p>
                     Ваш пол.<br>
                     <input type="radio" name="browser" value="male">Мужской
                     <input type="radio" name="browser" value="female">Женский

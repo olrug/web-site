@@ -64,5 +64,149 @@ export default {
         }
       }
     });
+
+    var calendarContainer = document.getElementById('calendar');
+    var monthSelect = document.getElementById('monthSelect');
+    var yearSelect = document.getElementById('yearSelect');
+
+    // Функция для генерации календаря
+    function generateCalendar(year, month) {
+      var calendarTable = document.createElement('table');
+      calendarTable.classList.add('calendar');
+
+      // Создаем заголовок с названиями дней недели
+      var headerRow = document.createElement('tr');
+      var daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+      for (var i = 0; i < daysOfWeek.length; i++) {
+        var headerCell = document.createElement('th');
+        headerCell.textContent = daysOfWeek[i];
+        headerRow.appendChild(headerCell);
+      }
+
+      calendarTable.appendChild(headerRow);
+
+      // Получаем первый день месяца
+      var firstDay = new Date(year, month, 1);
+      var startingDay = firstDay.getDay();
+
+      // Определяем количество дней в месяце
+      var monthLength = new Date(year, month + 1, 0).getDate();
+
+      // Создаем ячейки для дней месяца
+      var day = 1;
+
+      for (i = 0; i < 6; i++) {
+        var weekRow = document.createElement('tr');
+
+        for (var j = 0; j < 7; j++) {
+          if (i === 0 && j < startingDay) {
+            var dayCell = document.createElement('td');
+            weekRow.appendChild(dayCell);
+          } else if (day > monthLength) {
+            break;
+          } else {
+            var dayCel = document.createElement('td');
+            dayCel.textContent = day;
+            dayCel.addEventListener('click', selectDate);
+            weekRow.appendChild(dayCel);
+            day++;
+          }
+        }
+
+        calendarTable.appendChild(weekRow);
+
+        if (day > monthLength) {
+          break;
+        }
+      }
+
+      return calendarTable;
+    }
+
+    // Функция для обновления календаря при изменении выбранных значений
+    function updateCalendar() {
+      var selectedYear = parseInt(yearSelect.value);
+      var selectedMonth = parseInt(monthSelect.value);
+
+      // Удаляем предыдущий календарь (если есть)
+      while (calendarContainer.firstChild) {
+        calendarContainer.removeChild(calendarContainer.firstChild);
+      }
+
+      // Генерируем новый календарь
+      var newCalendar = generateCalendar(selectedYear, selectedMonth);
+      calendarContainer.appendChild(newCalendar);
+    }
+
+    // Функция для выбора даты
+    function selectDate(event) {
+      var selectedDay = event.target.textContent;
+      var selectedMonth = parseInt(monthSelect.value);
+      var selectedYear = parseInt(yearSelect.value);
+
+      var selectedDateInput = document.getElementById('selectedDateInput');
+      selectedDateInput.value = selectedDay + '.' + (selectedMonth + 1) + '.' + selectedYear;
+
+      console.log('Выбрана дата:', selectedDay, selectedMonth, selectedYear);
+    }
+
+    // Заполняем выпадающие списки для выбора года и месяца
+    var currentYear = new Date().getFullYear();
+    var currentMonth = new Date().getMonth();
+
+    for (var i = currentYear - 100; i <= currentYear + 10; i++) {
+      var option = document.createElement('option');
+      option.value = i;
+      option.textContent = i;
+
+      if (i === currentYear) {
+        option.selected = true;
+      }
+
+      yearSelect.appendChild(option);
+    }
+
+    //На изменение месяца или года, обновление календаря
+    yearSelect.addEventListener("change", function() {
+      updateCalendar();
+    });
+    monthSelect.addEventListener("change", function() {
+      updateCalendar();
+    
+    document.getElementById("selectedDateInput").addEventListener("focus", function() {
+      showCalendar();
+    });
+      
+    // Обработчик события ухода фокуса с поля ввода даты
+    document.getElementById("selectedDateInput").addEventListener("blur", function() {
+      hideCalendar();
+    });
+
+    });
+    monthSelect.selectedIndex = currentMonth;
+
+    // Функция для показа календаря
+    function showCalendar() {
+      var input = document.getElementById('selectedDateInput');
+      var calendar = document.getElementById('calendar');
+      var inputRect = input.getBoundingClientRect();
+
+      calendar.style.display = 'block';
+      calendar.style.position = 'absolute';
+      calendar.style.top = inputRect.bottom + 'px';
+      calendar.style.left = inputRect.left + 'px';
+    }
+
+    // Функция для скрытия календаря
+    function hideCalendar() {
+      var calendar = document.getElementById('calendar');
+      calendar.style.display = 'none';
+    }
+
+    // Генерируем календарь при загрузке страницы
+    var initialCalendar = generateCalendar(currentYear, currentMonth);
+    calendarContainer.appendChild(initialCalendar);
+
   }
 };

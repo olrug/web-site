@@ -1,10 +1,18 @@
 .Navbar {
-    background-color: #f2f2f2;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f2;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
   }
-  
-  nav ul {
+.Navbar nav{
+  display:flex;
+}
+
+.Navbar nav .current-date{
+  margin-right: 230px;
+}
+
+.Navbar nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -12,11 +20,11 @@
     justify-content: center;
   }
   
-  nav ul li {
+.Navbar  nav ul li {
     margin-right: 10px;
   }
   
-  nav ul li a {
+.Navbar nav ul li a {
     color: #333;
     text-decoration: none;
     padding: 10px 15px;
@@ -24,12 +32,32 @@
     transition: background-color 0.3s ease;
   }
   
-  nav ul li a:hover {
+.Navbar nav ul li a:hover {
     background-color: #ddd;
   }
   
-  nav ul li a.active {
+.Navbar nav ul li a.active {
     background-color: #333;
     color: #fff;
     font-weight: bold;
   }
+.interests-dropdown {
+    position: relative;
+}
+
+.interests-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 10000;
+}
+
+.interests-dropdown .dropdown-content a {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.interests-dropdown:hover .dropdown-content {
+    display: block;
+}
+

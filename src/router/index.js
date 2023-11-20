@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Navbar from '../components/Navbar.vue';
+import Navbar from '../components/NavbarComponent.vue';
 import Home from '../components/HomeComponent.vue';
 import About from '../components/AboutComponent.vue';
 import Interests from '../components/InterestsComponent.vue';
