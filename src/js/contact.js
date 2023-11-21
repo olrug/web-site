@@ -65,148 +65,148 @@ export default {
       }
     });
 
-    var calendarContainer = document.getElementById('calendar');
-    var monthSelect = document.getElementById('monthSelect');
-    var yearSelect = document.getElementById('yearSelect');
+    // Получаем элементы DOM
+var calendarContainer = document.getElementById("calendarContainer");
+var yearSelect = document.getElementById("yearSelect");
+var monthSelect = document.getElementById("monthSelect");
+var calendar = document.getElementById("calendar");
+var selectedDateInput = document.getElementById("selectedDateInput");
 
-    // Функция для генерации календаря
-    function generateCalendar(year, month) {
-      var calendarTable = document.createElement('table');
-      calendarTable.classList.add('calendar');
+// Функция для создания списка выбора года
+function populateYearSelect() {
+  var currentYear = new Date().getFullYear();
+  var minYear = currentYear - 50;
+  var maxYear = currentYear + 50;
 
-      // Создаем заголовок с названиями дней недели
-      var headerRow = document.createElement('tr');
-      var daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  for (var year = minYear; year <= maxYear; year++) {
+    var option = document.createElement("option");
+    option.value = year;
+    option.text = year;
+    yearSelect.appendChild(option);
+  }
+}
 
-      for (var i = 0; i < daysOfWeek.length; i++) {
-        var headerCell = document.createElement('th');
-        headerCell.textContent = daysOfWeek[i];
-        headerRow.appendChild(headerCell);
+// Функция для создания календаря
+function createCalendar(year, month) {
+  // Получаем элементы календаря
+  var header = document.createElement("div");
+  header.innerHTML = getMonthName(month) + " " + year;
+  calendar.innerHTML = "";
+  calendar.appendChild(header);
+
+  var table = document.createElement("table");
+  var daysInMonth = getDaysInMonth(year, month);
+  var firstDay = getFirstDay(year, month);
+
+  // Создаем заголовки таблицы
+  var thead = document.createElement("thead");
+  var tr = document.createElement("tr");
+  var weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+
+  for (var i = 0; i < weekdays.length; i++) {
+    var th = document.createElement("th");
+    th.innerHTML = weekdays[i];
+    tr.appendChild(th);
+  }
+
+  thead.appendChild(tr);
+  table.appendChild(thead);
+
+  // Создаем ячейки для дней месяца
+  var tbody = document.createElement("tbody");
+  var day = 1;
+
+  for (i = 0; i < 6; i++) {
+    tr = document.createElement("tr");
+
+    for (var j = 0; j < 7; j++) {
+      var td = document.createElement("td");
+
+      if (i === 0 && j < firstDay) {
+        // Пустая ячейка до первого дня месяца
+        td.innerHTML = "";
+      } else if (day > daysInMonth) {
+        // Пустая ячейка после последнего дня месяца
+        break;
+      } else {
+        // Ячейка с датой
+        td.innerHTML = day;
+        td.dataset.day = day;
+        td.dataset.month = month;
+        td.dataset.year = year;
+        td.addEventListener("click", selectDate);
+        day++;
       }
 
-      calendarTable.appendChild(headerRow);
-
-      // Получаем первый день месяца
-      var firstDay = new Date(year, month, 1);
-      var startingDay = firstDay.getDay();
-
-      // Определяем количество дней в месяце
-      var monthLength = new Date(year, month + 1, 0).getDate();
-
-      // Создаем ячейки для дней месяца
-      var day = 1;
-
-      for (i = 0; i < 6; i++) {
-        var weekRow = document.createElement('tr');
-
-        for (var j = 0; j < 7; j++) {
-          if (i === 0 && j < startingDay) {
-            var dayCell = document.createElement('td');
-            weekRow.appendChild(dayCell);
-          } else if (day > monthLength) {
-            break;
-          } else {
-            var dayCel = document.createElement('td');
-            dayCel.textContent = day;
-            dayCel.addEventListener('click', selectDate);
-            weekRow.appendChild(dayCel);
-            day++;
-          }
-        }
-
-        calendarTable.appendChild(weekRow);
-
-        if (day > monthLength) {
-          break;
-        }
-      }
-
-      return calendarTable;
+      tr.appendChild(td);
     }
 
-    // Функция для обновления календаря при изменении выбранных значений
-    function updateCalendar() {
-      var selectedYear = parseInt(yearSelect.value);
-      var selectedMonth = parseInt(monthSelect.value);
+    tbody.appendChild(tr);
+  }
 
-      // Удаляем предыдущий календарь (если есть)
-      while (calendarContainer.firstChild) {
-        calendarContainer.removeChild(calendarContainer.firstChild);
-      }
+  table.appendChild(tbody);
+  calendar.appendChild(table);
+}
 
-      // Генерируем новый календарь
-      var newCalendar = generateCalendar(selectedYear, selectedMonth);
-      calendarContainer.appendChild(newCalendar);
-    }
+// Функция для получения имени месяца по индексу
+function getMonthName(month) {
+  var months = [
+    "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+  ];
+  return months[month];
+}
 
-    // Функция для выбора даты
-    function selectDate(event) {
-      var selectedDay = event.target.textContent;
-      var selectedMonth = parseInt(monthSelect.value);
-      var selectedYear = parseInt(yearSelect.value);
+// Функция для получения количества дней в месяце
+function getDaysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
+}
 
-      var selectedDateInput = document.getElementById('selectedDateInput');
-      selectedDateInput.value = selectedDay + '.' + (selectedMonth + 1) + '.' + selectedYear;
+// Функция для получения индекса первого дня месяца (0 - Пн, 1 - Вт, и т.д.)
+function getFirstDay(year, month) {
+  return new Date(year, month, 1).getDay();
+}
 
-      console.log('Выбрана дата:', selectedDay, selectedMonth, selectedYear);
-    }
+// Функция для выбора даты
+function selectDate(e) {
+  var day = e.target.dataset.day;
+  var month = e.target.dataset.month;
+  var year = e.target.dataset.year;
 
-    // Заполняем выпадающие списки для выбора года и месяца
-    var currentYear = new Date().getFullYear();
-    var currentMonth = new Date().getMonth();
+  selectedDateInput.value = day + "." + (parseInt(month) + 1) + "." + year;
+  calendar.style.display = "none";
+}
 
-    for (var i = currentYear - 100; i <= currentYear + 10; i++) {
-      var option = document.createElement('option');
-      option.value = i;
-      option.textContent = i;
+// Добавляем обработчик события для отображения календаря при нажатии на input
+selectedDateInput.addEventListener("click", function() {
+  calendarContainer.style.position = "relative";
+  calendarContainer.appendChild(calendar);
+  calendar.style.display = "block";
+  // Добавьте класс "below-input" к календарю
+  calendar.classList.add("below-input");
+});
 
-      if (i === currentYear) {
-        option.selected = true;
-      }
+// Добавляем обработчики событий для выбора года и месяца
+yearSelect.addEventListener("change", function() {
+  var year = parseInt(yearSelect.value);
+  var month = parseInt(monthSelect.value);
+  createCalendar(year, month);
+});
 
-      yearSelect.appendChild(option);
-    }
+monthSelect.addEventListener("change", function() {
+  var year = parseInt(yearSelect.value);
+  var month = parseInt(monthSelect.value);
+  createCalendar(year, month);
+});
 
-    //На изменение месяца или года, обновление календаря
-    yearSelect.addEventListener("change", function() {
-      updateCalendar();
-    });
-    monthSelect.addEventListener("change", function() {
-      updateCalendar();
-    
-    document.getElementById("selectedDateInput").addEventListener("focus", function() {
-      showCalendar();
-    });
-      
-    // Обработчик события ухода фокуса с поля ввода даты
-    document.getElementById("selectedDateInput").addEventListener("blur", function() {
-      hideCalendar();
-    });
+// Инициализация календаря
+populateYearSelect();
+var currentYear = new Date().getFullYear();
+var currentMonth = new Date().getMonth();
+yearSelect.value = currentYear;
+monthSelect.value = currentMonth;
+createCalendar(currentYear, currentMonth);
 
-    });
-    monthSelect.selectedIndex = currentMonth;
-
-    // Функция для показа календаря
-    function showCalendar() {
-      var input = document.getElementById('selectedDateInput');
-      var calendar = document.getElementById('calendar');
-      var inputRect = input.getBoundingClientRect();
-
-      calendar.style.display = 'block';
-      calendar.style.position = 'absolute';
-      calendar.style.top = inputRect.bottom + 'px';
-      calendar.style.left = inputRect.left + 'px';
-    }
-
-    // Функция для скрытия календаря
-    function hideCalendar() {
-      var calendar = document.getElementById('calendar');
-      calendar.style.display = 'none';
-    }
-
-    // Генерируем календарь при загрузке страницы
-    var initialCalendar = generateCalendar(currentYear, currentMonth);
-    calendarContainer.appendChild(initialCalendar);
 
   }
 };

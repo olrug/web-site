@@ -45,36 +45,47 @@
 }
 
 #calendarContainer {
-    text-align: center;
-  }
-  
-  .controls {
-    margin-bottom: 10px;
-  }
-  
-  #calendar {
-    display: none; /* Изначально скрываем календарь */
-    position: absolute; /* Позиционируем календарь абсолютно */
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #fff;
-  }
-  
-  #calendar table {
-    width: 100%;
-  }
-  
-  #calendar th,
-  #calendar td {
-    text-align: center;
-    padding: 5px;
-  }
-  
-  #calendar td:hover {
-    background-color: #f2f2f2;
-    cursor: pointer;
-  }
-  
-  #selectedDateInput {
-    position: relative; /* Устанавливаем поле ввода в родительскую позицию */
-  }
+  text-align: center;
+  position: relative;
+}
+
+.controls {
+  margin-bottom: 10px;
+}
+
+#calendar {
+  display: none;
+  position: absolute;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+  width: auto; 
+  max-width: 300px; 
+}
+
+#calendar table {
+  width: 100%;
+}
+
+#calendar th,
+#calendar td {
+  text-align: center;
+  padding: 5px;
+}
+
+#calendar td:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+#selectedDateInput {
+  position: relative;
+}
+
+/* Добавляем стили для позиционирования календаря */
+#calendar.below-input {
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  margin: auto;
+}
