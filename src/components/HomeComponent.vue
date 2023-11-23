@@ -33,9 +33,4 @@
     </div>
 </template>
 
-<script>
-import '../styles/HomeStyle.css';
-    export default {
-        name: 'HomeComponent'
-    };
-</script>
+<script src="../js/home"></script>

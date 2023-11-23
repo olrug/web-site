@@ -7,6 +7,7 @@ import Study from '../components/StudyComponent.vue';
 import PhotoAlbum from '../components/PhotoAlbum.vue';
 import Contact from '../components/ContactComponent.vue';
 import Test from '../components/TestComponent.vue';
+import History from '../components/HistoryComponent.vue';
 
 const routes = [
     {
@@ -71,6 +72,15 @@ const routes = [
         navbar: Navbar,
       },
       meta: { title: 'Тест по дисциплине'}
+    },
+    {
+      path: '/history',
+      name: 'history',
+      components: {
+        default: History,
+        navbar: Navbar,
+      },
+      meta: { title: 'История посещений'}
     }
   ];
   

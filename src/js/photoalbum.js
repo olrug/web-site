@@ -1,8 +1,12 @@
 import '../styles/PhotoStyle.css';
+import { updatePageHistory } from './historyFunction';
+
 
 export default {
   name: "PhotoComponent",
   mounted() {
+    updatePageHistory();
+
     const photos = [
       require("../assets/photoalbum/patrick_1.jpg"),
       require("../assets/photoalbum/patrick_2.jpg"),

@@ -14,6 +14,7 @@
                 <li><router-link active-class="active" to="/photoalbum">Фотоальбом</router-link></li>
                 <li><router-link active-class="active" to="/contact">Контакт</router-link></li>
                 <li><router-link active-class="active" to="/test">Тест</router-link></li>
+                <li><router-link active-class="active" to="/history">История</router-link></li>
             </ul>
         </nav>
     </div>

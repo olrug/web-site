@@ -1,8 +1,11 @@
 import '../styles/ContactStyle.css';
+import { updatePageHistory } from './historyFunction';
 
 export default {
   name: "TestComponent",
   mounted() {
+    updatePageHistory();
+
     const form = document.querySelector('form');
     const submitButton = form.querySelector('.send_button');
     const fullNameInput = form.querySelector('#fullNameInput');

@@ -1,4 +1,5 @@
 import '../styles/InterestsStyle.css'
+import { updatePageHistory } from './historyFunction';
 
 function createInterests(...interests) {
   const sidebar = document.querySelector('.panel');
@@ -35,6 +36,8 @@ function createInterests(...interests) {
 export default {
   name: 'InterestComponent',
   mounted() {
+    updatePageHistory();
+
       const hobbies = {
         id: "hobby",
         name: "Мои хобби",

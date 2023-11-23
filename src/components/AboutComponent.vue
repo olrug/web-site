@@ -30,10 +30,4 @@
     </div>
 </template>
   
-<script>
-    import '../styles/AboutStyle.css';
-
-    export default {
-        name: 'AboutComponent'
-    };
-</script>
+<script src="../js/about"></script>
