@@ -1,5 +1,5 @@
-import '../styles/EducationComponent.scss';
-import { updatePageHistory } from './historyFunctions';
+import '../styles/Study.scss';
+import { updatePageHistory } from './historyFunction';
 
 export default {
     name: 'EducationComponent',

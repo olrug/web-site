@@ -1,4 +1,4 @@
-import '../styles/HomeStyle.css'
+import '../styles/HomeStyle.scss'
 import { updatePageHistory } from '../js/historyFunction';
 
 export default {

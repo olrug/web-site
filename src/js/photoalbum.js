@@ -1,4 +1,4 @@
-import '../styles/PhotoStyle.css';
+import '../styles/PhotoStyle.scss';
 import { updatePageHistory } from './historyFunction';
 import $ from 'jquery';
 

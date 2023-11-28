@@ -152,9 +152,4 @@
     </div>
 </template>
 
-<script>
-    import '../styles/Study.css'
-    export default{
-        name: 'StudyComponent'
-    }
-</script>
+<script src="../js/education.js"></script>

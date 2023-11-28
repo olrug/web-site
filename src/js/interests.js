@@ -1,4 +1,4 @@
-import '../styles/InterestsStyle.css';
+import '../styles/InterestsStyle.scss';
 import { updatePageHistory } from './historyFunction';
 import $ from 'jquery';
 

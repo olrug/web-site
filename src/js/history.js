@@ -1,4 +1,4 @@
-import '../styles/HistoryStyle.css';
+import '../styles/HistoryStyle.scss';
 import { getCookie } from './historyFunction';
 import $ from 'jquery';
 

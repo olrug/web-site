@@ -1,4 +1,4 @@
-import '../styles/ContactStyle.css';
+import '../styles/ContactStyle.scss';
 import $ from 'jquery';
 import { updatePageHistory } from './historyFunction';
 

@@ -1,0 +1,37 @@
+.HomeWrap {
+    padding-bottom: 50px;
+  }
+  
+  .HomeNameWrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  
+    h1 {
+      font-size: 24px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  }
+  
+  .HomeInfoWrap {
+    display: flex;
+    justify-content: center;
+  
+    .pic {
+      width: 380px;
+      height: 600px;
+      display: flex;
+      margin-right: 100px;
+    }
+  
+    .InfoTxt {
+      border: 6px solid #000000;
+      max-width: 350px;
+      text-align: justify;
+      font-size: 18px;
+      padding: 20px;
+    }
+  }

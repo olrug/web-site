@@ -1,0 +1,32 @@
+.HistoryNameWrap {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.history-component {
+  & .history-tables {
+    display: flex;
+    justify-content: space-between;
+    max-width: 700px;
+    margin: auto;
+
+    table {
+      margin: 30px 0;
+      border-collapse: collapse;
+
+      caption {
+        font-size: 16px;
+        font-weight: bold;
+        border: 1px solid #838383;
+        border-bottom: 0;
+      }
+
+      th,
+      td {
+        padding: 5px;
+        text-align: center;
+        border: 1px solid #838383;
+      }
+    }
+  }
+}

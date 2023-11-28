@@ -1,4 +1,4 @@
-import '../styles/NavbarStyle.css';
+import '../styles/NavbarStyle.scss';
 import $ from 'jquery';
 
 export default {
