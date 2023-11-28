@@ -65,6 +65,14 @@
                 </p>
             </form>
         </div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+              <h2>Вы действительно хотите это сделать?</h2>
+              <button id="confirmButton">Да</button>
+              <button id="cancelButton">Отмена</button>
+            </div>
+          </div>
+          
     </div>
 </template>
 

@@ -1,10 +1,74 @@
 import '../styles/ContactStyle.css';
+import $ from 'jquery';
 import { updatePageHistory } from './historyFunction';
 
 export default {
   name: "TestComponent",
   mounted() {
     updatePageHistory();
+
+    $(document).ready(function() {
+      // Подсказки для поля ФИО
+      $('#fullNameInput').mouseenter(function() {
+        showTooltip($(this), 'Пример: Иванов Иван Иванович');
+      }).mouseleave(function() {
+        hideTooltip();
+      });
+    
+      // Подсказки для поля номера телефона
+      $('#phoneInput').mouseenter(function() {
+        showTooltip($(this), 'Пример: +7XXXXXXXXXX');
+      }).mouseleave(function() {
+        hideTooltip();
+      });
+    
+      // Подсказки для поля email
+      $('input[name="email"]').mouseenter(function() {
+        showTooltip($(this), 'Пример: example@example.com');
+      }).mouseleave(function() {
+        hideTooltip();
+      });
+    
+      // Функция для показа подсказки
+      function showTooltip(input, tooltipText) {
+        var position = input.position();
+        var tooltip = $('<div class="tooltip">' + tooltipText + '</div>');
+        tooltip.css({
+          'left': position.left + input.outerWidth() + 10,
+          'top': position.top,
+        });
+        $('body').append(tooltip);
+      }
+    
+      // Функция для скрытия подсказки
+      function hideTooltip() {
+        $('.tooltip').remove();
+      }
+    });
+
+    $(document).ready(function() {
+      $('#contactForm').submit(function(event) {
+        event.preventDefault(); // Предотвращаем отправку формы
+    
+        // Отображаем модальное окно
+        $('#modal').css('display', 'block');
+      });
+    
+      // Обработчик клика на кнопку подтверждения
+      $('#confirmButton').click(function() {
+        // Скрываем модальное окно
+        $('#modal').css('display', 'none');
+    
+        // Продолжаем отправку формы
+        $('#contactForm')[0].submit();
+      });
+    
+      // Обработчик клика на кнопку отмены
+      $('#cancelButton').click(function() {
+        // Скрываем модальное окно
+        $('#modal').css('display', 'none');
+      });
+    });
 
     const form = document.querySelector('form');
     const submitButton = form.querySelector('.send_button');

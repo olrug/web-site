@@ -1,6 +1,6 @@
 import '../styles/PhotoStyle.css';
 import { updatePageHistory } from './historyFunction';
-
+import $ from 'jquery';
 
 export default {
   name: "PhotoComponent",
@@ -43,45 +43,44 @@ export default {
       "Пятнадцатый Патрик Бэйтмэн!",
     ];
 
-    const photoContainer = document.getElementById("photoContainer");
+    const photoContainer = $('#photoContainer');
 
     for (let i = 0; i < photos.length; i++) {
       if (i % 3 === 0) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-        photoContainer.appendChild(row);
+        const row = $('<div class="row"></div>');
+        photoContainer.append(row);
       }
 
-      const photoDiv = document.createElement("div");
-      const img = document.createElement("img");
-      const caption = document.createElement("p");
+      const photoDiv = $('<div></div>');
+      const img = $('<img>');
+      const caption = $('<p></p>');
 
-      img.src = photos[i];
-      img.title = titles[i];
-      caption.textContent = `Патрик - ${i + 1}`;
+      img.attr('src', photos[i]);
+      img.attr('title', titles[i]);
+      caption.text(`Патрик - ${i + 1}`);
 
-      photoDiv.appendChild(img);
-      photoDiv.appendChild(caption);
+      photoDiv.append(img);
+      photoDiv.append(caption);
 
-      const currentRow = photoContainer.lastElementChild;
-      currentRow.appendChild(photoDiv);
+      const currentRow = photoContainer.children().last();
+      currentRow.append(photoDiv);
     }
 
-    const popup = document.querySelector('.PhotoWrap .pop-up');
-    const popupImage = document.querySelector('.PhotoWrap .pop-up img');
-    const closeButton = document.querySelector('.PhotoWrap .pop-up span');
-    const leftButton = document.querySelector('.PhotoWrap .pop-up .button-left');
-    const rightButton = document.querySelector('.PhotoWrap .pop-up .button-right');
+    const popup = $('.PhotoWrap .pop-up');
+    const popupImage = $('.PhotoWrap .pop-up img');
+    const closeButton = $('.PhotoWrap .pop-up span');
+    const leftButton = $('.PhotoWrap .pop-up .button-left');
+    const rightButton = $('.PhotoWrap .pop-up .button-right');
     let currentImageIndex = 0;
 
     const openPopup = (index) => {
-      popup.style.display = 'block';
-      popupImage.src = photos[index];
+      popup.css('display', 'block');
+      popupImage.attr('src', photos[index]);
       currentImageIndex = index;
     };
 
     const closePopup = () => {
-      popup.style.display = 'none';
+      popup.css('display', 'none');
     };
 
     const showPreviousImage = () => {
@@ -90,7 +89,10 @@ export default {
       } else {
         currentImageIndex--;
       }
-      popupImage.src = photos[currentImageIndex];
+      popupImage.fadeOut(200, function() {
+        popupImage.attr('src', photos[currentImageIndex]);
+        popupImage.fadeIn(200);
+      });
     };
 
     const showNextImage = () => {
@@ -99,26 +101,19 @@ export default {
       } else {
         currentImageIndex++;
       }
-      popupImage.src = photos[currentImageIndex];
+      popupImage.fadeOut(200, function() {
+        popupImage.attr('src', photos[currentImageIndex]);
+        popupImage.fadeIn(200);
+      });
     };
 
-    document.querySelectorAll('.PhotoWrap .lol img').forEach((img, index) => {
-      img.onclick = () => {
-        openPopup(index);
-      };
+    $('.PhotoWrap .lol img').on('click', function() {
+      const index = $(this).index();
+      openPopup(index);
     });
 
-    closeButton.onclick = () => {
-     closePopup();
-    };
-
-    leftButton.onclick = () => {
-      showPreviousImage();
-    };
-
-    rightButton.onclick = () => {
-      showNextImage();
-    };
-  },
-  
+    closeButton.on('click', closePopup);
+    leftButton.on('click', showPreviousImage);
+    rightButton.on('click', showNextImage);
+  }
 };

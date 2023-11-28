@@ -1,4 +1,5 @@
 import '../styles/NavbarStyle.css';
+import $ from 'jquery';
 
 export default {
     name: 'NavbarComponent',
@@ -14,11 +15,11 @@ export default {
         };
     },
     mounted() {
-        const interestsDropdown = document.querySelector('.interests-dropdown');
-        const dropdown = document.querySelector('.dropdown-content');
+        const interestsDropdown = $('.interests-dropdown');
+        const dropdown = $('.dropdown-content');
 
-        interestsDropdown.addEventListener('mouseenter', () => this.handleMouseEnter(dropdown));
-        interestsDropdown.addEventListener('mouseleave', () => this.handleMouseLeave(dropdown));
+        interestsDropdown.on('mouseenter', () => this.handleMouseEnter(dropdown));
+        interestsDropdown.on('mouseleave', () => this.handleMouseLeave(dropdown));
 
         this.scrollToHash();
         this.updateDateTime();
@@ -45,30 +46,30 @@ export default {
             this.createInterests(interests, dropdown);
         },
         handleMouseLeave(dropdown) {
-            dropdown.innerHTML = '';
+            dropdown.empty();
         },
         createInterests(interests, dropdown) {
-            const interestDropdown = document.createElement('ul');
+            const interestDropdown = $('<ul></ul>');
 
             for (let [interest, name] of interests) {
-                const itemDropdownLi = document.createElement('li');
+                const itemDropdownLi = $('<li></li>');
 
-                itemDropdownLi.innerHTML = `<a href="/interests#${interest}">${name}</a>`;
+                itemDropdownLi.html(`<a href="/interests#${interest}">${name}</a>`);
 
-                interestDropdown.appendChild(itemDropdownLi);
+                interestDropdown.append(itemDropdownLi);
             }
 
-            dropdown.appendChild(interestDropdown);
+            dropdown.append(interestDropdown);
         },
         scrollToHash() {
             const hash = window.location.hash;
 
             if (hash) {
                 setTimeout(() => {
-                    const element = document.querySelector(hash);
+                    const element = $(hash);
 
-                    if (element) {
-                        element.scrollIntoView();
+                    if (element.length) {
+                        $('html, body').animate({ scrollTop: element.offset().top }, 500);
                     }
                 }, 0);
             }
